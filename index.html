@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0F1218">
+<title>Kitsakorn Seehaklang, Cybersecurity Portfolio</title>
+<meta name="description" content="Portfolio of Kitsakorn Seehaklang: cybersecurity, ethical hacking and web application penetration testing. CEH v13, Fortinet FCA.">
+<meta property="og:title" content="Kitsakorn Seehaklang, Cybersecurity Portfolio">
+<meta property="og:description" content="Cybersecurity, ethical hacking and web application penetration testing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F1218;
+    --bg-2:#0A0D12;
+    --panel:#1E2430;
+    --panel-2:#262D3B;
+    --edge:#05070A;
+    --text:#E7EAF0;
+    --muted:#9AA6B8;
+    --cyan:#47E0D0;
+    --cyan-d:#0B6A62;
+    --red:#EF4B3F;
+    --gold:#F4BC3C;
+    --display:"Pixelify Sans","IBM Plex Sans",system-ui,sans-serif;
+    --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --bevel:inset -4px -4px 0 rgba(0,0,0,.35),inset 4px 4px 0 rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--bg)}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;color:var(--text);font:400 1.0625rem/1.7 var(--body);
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:32px 32px;
+  }
+  a{color:var(--cyan);text-underline-offset:.2em}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .panel{background:var(--panel);border:4px solid var(--edge);box-shadow:var(--bevel)}
+  .px{display:block;flex:none;image-rendering:pixelated;border:4px solid var(--edge);background:var(--bg-2)}
+
+  /* buttons */
+  .btn{display:inline-block;padding:10px 20px;font:700 1rem/1.5 var(--display);text-decoration:none;cursor:pointer;
+       background:var(--cyan);color:#06201C;border:4px solid var(--edge);box-shadow:var(--bevel)}
+  .btn.ghost{background:var(--panel-2);color:var(--text)}
+  .btn:hover{filter:brightness(1.12)}
+  .btn:active{transform:translateY(3px)}
+
+  /* top bar */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:20px 0}
+  .brand{font:700 1.25rem/1.3 var(--display);padding:4px 12px;background:var(--cyan);color:#06201C;border:4px solid var(--edge);box-shadow:var(--bevel);text-decoration:none}
+  .top nav{display:flex;gap:24px;flex-wrap:wrap}
+  .top nav a{color:var(--text);text-decoration:none;font-weight:500}
+  .top nav a:hover{color:var(--cyan);text-decoration:underline}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:40px 48px;align-items:center;padding:48px 0 72px}
+  .hero h1{font:700 clamp(2.5rem,7vw,5rem)/1.05 var(--display);margin:24px 0 32px;text-shadow:.055em .055em 0 var(--cyan-d);overflow-wrap:anywhere}
+  .hero h1 span{display:block}
+  .btns{display:flex;gap:14px;flex-wrap:wrap}
+
+  .term{background:var(--bg-2);border:4px solid var(--edge);box-shadow:var(--bevel),10px 10px 0 rgba(71,224,208,.16)}
+  .term-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--panel-2);border-bottom:4px solid var(--edge);font:500 .8125rem var(--mono);color:var(--muted)}
+  .term-bar i{display:block;width:12px;height:12px;border:2px solid var(--edge)}
+  .term-bar i:nth-child(1){background:var(--red)}
+  .term-bar i:nth-child(2){background:var(--gold)}
+  .term-bar i:nth-child(3){background:var(--cyan)}
+  .term-bar span{margin-left:8px}
+  .term-body{padding:18px 20px 22px;font:400 .9375rem/1.75 var(--mono);color:var(--text)}
+  .tl{margin:0}
+  .tl.out{color:var(--muted);padding-left:2ch;margin-bottom:10px;overflow-wrap:anywhere}
+  .tl.cmt{margin-top:-6px}
+  .ps1{color:var(--cyan)}
+  .cmd{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;width:calc(var(--n,1)*1ch)}
+  .cursor{display:inline-block;width:.6em;height:1.15em;background:var(--cyan);vertical-align:text-bottom}
+  .redact{font:inherit;color:transparent;background:var(--text);border:0;padding:0 .35em;margin:0 .1em;cursor:pointer}
+  .redact[aria-pressed="true"]{background:var(--gold);color:#1A1405}
+  @media (prefers-reduced-motion:no-preference){
+    .tl{animation:show .01s linear var(--d,0s) both}
+    .cmd{animation:typing var(--dur,.4s) steps(var(--n,1)) var(--d,0s) both}
+    .cursor{animation:blink 1.05s steps(1) infinite}
+    .static .tl,.static .cmd{animation:none}
+    @keyframes show{from{opacity:0}}
+    @keyframes typing{from{width:0}}
+    @keyframes blink{50%{opacity:0}}
+  }
+
+  /* sections */
+  .sec{padding:56px 0 8px}
+  .sec>h2{display:flex;align-items:center;gap:14px;margin:0 0 24px;font:700 1.75rem/1.3 var(--display)}
+  .sec>h2::before{content:"";width:18px;height:18px;background:var(--cyan);border:3px solid var(--edge);box-shadow:var(--bevel)}
+  .sec p{margin:0}
+  .empty{color:var(--muted)}
+  .note{color:var(--muted);max-width:62ch;margin-bottom:24px!important}
+  .list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+
+  .slots{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:24px}
+  .slots li{width:120px;text-align:center;font-size:.9375rem;line-height:1.45}
+  .slot{display:grid;place-items:center;width:88px;height:88px;margin:0 auto 10px;background:var(--bg-2);border:4px solid var(--edge);box-shadow:var(--bevel);font:700 1.5rem var(--display);color:var(--cyan)}
+
+  .proj{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:8px 20px;align-items:center;padding:20px}
+  .proj h3{margin:0;font:700 1.5rem/1.3 var(--display);overflow-wrap:anywhere}
+  .proj .desc{margin-top:4px;color:var(--muted);max-width:60ch}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:6px 0 0;padding:0;font-size:.875rem;color:var(--cyan)}
+  .tags li{background:var(--bg-2);border:2px solid var(--edge);padding:0 10px}
+
+  .cert{display:grid;grid-template-columns:72px minmax(0,1.5fr) minmax(0,1.1fr);gap:8px 20px;align-items:start;padding:20px;border-left:8px solid var(--gold)}
+  .cert h3{margin:0;font:700 1.25rem/1.4 var(--display)}
+  .issuer{margin-top:2px!important;color:var(--muted)}
+  .meta{color:var(--muted);font-size:.9375rem;line-height:1.7}
+  .meta+.meta{margin-top:10px!important}
+  .meta b{color:var(--text);font-weight:600}
+  .meta code{font:500 .875rem var(--mono);color:var(--gold);overflow-wrap:anywhere}
+
+  .contact{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px 28px;margin:0;padding:20px 24px}
+  .contact dt{color:var(--muted)}
+  .contact dd{margin:0;overflow-wrap:anywhere}
+
+  footer{margin-top:72px;overflow:hidden}
+  #strata{display:block;image-rendering:pixelated}
+  .foot{background:#222836;padding:20px 20px 40px;text-align:center;color:var(--muted);font-size:.9375rem}
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;padding:32px 0 56px}
+    .hero h1{font-size:clamp(2.75rem,11vw,5.5rem)}
+  }
+  @media (max-width:700px){
+    .proj{grid-template-columns:72px minmax(0,1fr)}
+    .proj .go{grid-column:1/-1;justify-self:start}
+    .cert{grid-template-columns:72px minmax(0,1fr)}
+    .cert .meta-col{grid-column:1/-1}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#" aria-label="Kitsakorn Seehaklang, top of page">KS</a>
+    <nav aria-label="Main">
+      <a href="#projects" data-k="navProjects"></a>
+      <a href="#certs" data-k="navCerts"></a>
+      <a href="#contact" data-k="navContact"></a>
+    </nav>
+  </header>
+
+  <main id="main"></main>
+  <noscript><p>Please enable JavaScript to view this portfolio, or visit <a href="https://github.com/NongNgui">github.com/NongNgui</a>.</p></noscript>
+</div>
+
+<footer>
+  <canvas id="strata" aria-hidden="true"></canvas>
+  <div class="foot"><span id="copy"></span></div>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT YOUR CONTENT HERE
+   - Leave a description as "" to show "Details coming soon."
+   - avatar: put an image path/URL (e.g. "me.png") to replace the generated pixel avatar.
+   - Fill desc / about / email later, save, and push to GitHub.
+   ============================================================ */
+const PROFILE = {
+  name: "Kitsakorn Seehaklang",
+  github: "https://github.com/NongNgui",
+  linkedin: "https://www.linkedin.com/in/kitsakorn-seehaklang-b594813b9/",
+  email: "",
+  avatar: "",
+
+  headline: "Cybersecurity, ethical hacking and web application penetration testing.",
+
+  about: "",
+
+  skills: [
+    { abbr: "SEC", label: "Cybersecurity" },
+    { abbr: "EH",  label: "Ethical hacking" },
+    { abbr: "WEB", label: "Web application penetration testing" }
+  ],
+
+  projects: [
+    { name: "neet-topup",    url: "https://github.com/NongNgui/neet-topup",    tags: [], desc: "" },
+    { name: "KKUWiFi-Clone", url: "https://github.com/NongNgui/KKUWiFi-Clone", tags: [], desc: "" },
+    { name: "G14_IOT",       url: "https://github.com/NongNgui/G14_IOT",       tags: [], desc: "" },
+    { name: "hack2map",      url: "https://github.com/NongNgui/hack2map",      tags: [], desc: "" }
+  ],
+
+  certs: [
+    {
+      slug: "ceh-v13",
+      name: "Certified Ethical Hacker (CEH v13)",
+      issuer: "EC-Council",
+      issued: "Apr 2026",
+      expires: null,
+      id: "ECC3190745862",
+      verify: ""
+    },
+    {
+      slug: "web-app-pentest-apprentice",
+      name: "Certified Web App Penetration Testing Apprentice",
+      issuer: "Knight Squad Academy",
+      issued: "Mar 2026",
+      expires: null,
+      id: "KSA-G65BQKT82503",
+      verify: "https://credential.knightsquad.academy/KSA-G65BQKT82503"
+    },
+    {
+      slug: "fortinet-fca",
+      name: "Fortinet Certified Associate in Cybersecurity",
+      issuer: "Fortinet",
+      issued: "Mar 2026",
+      expires: "Mar 2028",
+      id: "1644690472KS",
+      verify: ""
+    }
+  ]
+};
+
+/* ============================================================
+   UI text (Thai / English)
+   ============================================================ */
+const UI = {
+  en: {
+    navProjects: "Projects", navCerts: "Certifications", navContact: "Contact",
+    about: "About", skills: "Skills", projects: "Projects", certs: "Certifications", contact: "Contact",
+    soon: "Details coming soon.",
+    privA: "Most of my work lives in private repositories, and a lot of it is",
+    redacted: "confidential",
+    privB: ". What I can share is below.",
+    hintTerm: "# click the bar to reveal it",
+    projectsNote: "Public repositories from my GitHub. Most other work is private, and I can walk through it on a screen share.",
+    viewRepo: "View on GitHub",
+    issued: "Issued", expires: "Expires", credId: "Credential ID", verify: "Verify credential",
+    email: "Email"
+  }
+};
+
+/* ============================================================
+   Helpers
+   ============================================================ */
+const P = PROFILE;
+const C = { cyan: "#47E0D0", gold: "#F4BC3C", red: "#EF4B3F" };
+const $ = (s, r = document) => r.querySelector(s);
+
+function h(tag, attrs = {}, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v;
+    else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of kids.flat()) {
+    if (c == null || c === false) continue;
+    el.append(typeof c === "string" ? document.createTextNode(c) : c);
+  }
+  return el;
+}
+
+function hash(s) {
+  let x = 2166136261;
+  for (let i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619); }
+  return x >>> 0;
+}
+function rng(seed) {
+  let a = seed;
+  return () => {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+/* 8x8 mirrored pixel icon, generated from a text seed */
+function pixelIcon(seed, colors, size = 72) {
+  const cv = h("canvas", { class: "px", "aria-hidden": "true", width: "8", height: "8" });
+  cv.style.width = cv.style.height = size + "px";
+  const g = cv.getContext("2d");
+  const r = rng(hash(seed));
+  g.fillStyle = "#0A0D12"; g.fillRect(0, 0, 8, 8);
+  const main = colors[(r() * colors.length) | 0];
+  const alt = colors[(r() * colors.length) | 0];
+  for (let y = 0; y < 8; y++) {
+    for (let x = 0; x < 4; x++) {
+      const v = r();
+      if (v > 0.5) {
+        g.fillStyle = v > 0.86 ? alt : main;
+        g.fillRect(x, y, 1, 1);
+        g.fillRect(7 - x, y, 1, 1);
+      }
+    }
+  }
+  return cv;
+}
+
+/* Ground strata with ore veins, drawn once per width */
+function drawStrata() {
+  const cv = $("#strata");
+  if (!cv) return;
+  const bs = 16, rows = 9;
+  const cols = Math.ceil(document.documentElement.clientWidth / bs);
+  cv.width = cols * bs; cv.height = rows * bs;
+  cv.style.width = cv.width + "px"; cv.style.height = cv.height + "px";
+  const g = cv.getContext("2d");
+  g.clearRect(0, 0, cv.width, cv.height);
+  const r = rng(hash("kitsakorn-strata"));
+  const stone = ["#262D3B", "#2A3242", "#222836"];
+  let top = 2;
+  for (let c = 0; c < cols; c++) {
+    const m = r();
+    if (m < 0.2) top--; else if (m > 0.8) top++;
+    top = Math.max(1, Math.min(4, top));
+    for (let row = top; row < rows; row++) {
+      const x = c * bs, y = row * bs;
+      g.fillStyle = row === top ? "#3E4C66" : row === top + 1 ? (r() < 0.5 ? "#33405A" : "#2F3B54") : stone[(r() * 3) | 0];
+      g.fillRect(x, y, bs, bs);
+      g.fillStyle = r() < 0.5 ? "rgba(255,255,255,.04)" : "rgba(0,0,0,.16)";
+      g.fillRect(x + ((r() * 3) | 0) * 4, y + ((r() * 3) | 0) * 4, 4, 4);
+      g.fillStyle = "rgba(0,0,0,.28)";
+      g.fillRect(x, y + bs - 1, bs, 1); g.fillRect(x + bs - 1, y, 1, bs);
+      if (row > top + 1) {
+        const o = r();
+        const ore = o < 0.035 ? C.cyan : o < 0.06 ? C.red : o < 0.075 ? C.gold : null;
+        if (ore) {
+          g.fillStyle = ore;
+          [[3, 3], [9, 2], [6, 8], [11, 10]].forEach(([dx, dy]) => g.fillRect(x + dx, y + dy, 4, 4));
+        }
+      }
+    }
+  }
+}
+
+
+/* ============================================================
+   Sections
+   ============================================================ */
+function section(id, title, ...content) {
+  return h("section", { class: "sec", id }, h("h2", {}, title), ...content);
+}
+
+function emptyOr(text, t, cls = "") {
+  return text
+    ? h("p", { class: cls }, text)
+    : h("p", { class: ("empty " + cls).trim() }, t.soon);
+}
+
+function buildTerminal(t, bar) {
+  const steps = [
+    { cmd: "whoami", out: [P.name] },
+    { cmd: "cat focus.txt", out: [P.headline] },
+    { cmd: "ls certs/", out: [P.certs.map(c => c.slug).join("  ")] },
+    { cmd: "cat private.txt", out: [t.privA, " ", bar, t.privB], note: t.hintTerm }
+  ];
+  const rows = [];
+  let d = 0.5;
+  for (const s of steps) {
+    const dur = +(s.cmd.length * 0.045).toFixed(2);
+    rows.push(h("div", { class: "tl", style: `--d:${d}s;--dur:${dur}s;--n:${s.cmd.length}` },
+      h("span", { class: "ps1" }, "$ "), h("span", { class: "cmd" }, s.cmd)));
+    d = +(d + dur + 0.2).toFixed(2);
+    rows.push(h("div", { class: "tl out", style: `--d:${d}s` }, s.out));
+    if (s.note) rows.push(h("div", { class: "tl out cmt", style: `--d:${d}s` }, s.note));
+    d = +(d + 0.35).toFixed(2);
+  }
+  rows.push(h("div", { class: "tl", style: `--d:${d}s` }, h("span", { class: "ps1" }, "$ "), h("span", { class: "cursor" })));
+  return h("div", { class: "term", role: "group", "aria-label": "Terminal" },
+    h("div", { class: "term-bar" }, h("i"), h("i"), h("i"), h("span", {}, "kitsakorn@portfolio: ~")),
+    h("div", { class: "term-body" }, rows)
+  );
+}
+
+function buildHero(t) {
+  const bar = h("button", { class: "redact", type: "button", "aria-pressed": "false" }, t.redacted);
+  bar.addEventListener("click", () => {
+    bar.setAttribute("aria-pressed", bar.getAttribute("aria-pressed") === "true" ? "false" : "true");
+  });
+  const [first, ...rest] = P.name.split(" ");
+  const avatar = P.avatar
+    ? h("img", { class: "px", src: P.avatar, alt: "", width: "96", height: "96" })
+    : pixelIcon(P.name, [C.cyan, C.gold, C.red], 96);
+  return h("section", { class: "hero" },
+    h("div", {},
+      avatar,
+      h("h1", {}, h("span", {}, first), " ", h("span", {}, rest.join(" "))),
+      h("div", { class: "btns" },
+        h("a", { class: "btn", href: P.github, rel: "noopener" }, "GitHub"),
+        h("a", { class: "btn ghost", href: P.linkedin, rel: "noopener" }, "LinkedIn")
+      )
+    ),
+    buildTerminal(t, bar)
+  );
+}
+
+function buildProjects(t) {
+  return section("projects", t.projects,
+    h("p", { class: "note" }, t.projectsNote),
+    h("ul", { class: "list" }, P.projects.map(p =>
+      h("li", { class: "proj panel" },
+        pixelIcon(p.name, [C.cyan, C.red, C.gold]),
+        h("div", {},
+          h("h3", {}, p.name),
+          p.tags && p.tags.length ? h("ul", { class: "tags" }, p.tags.map(x => h("li", {}, x))) : null,
+          emptyOr(p.desc, t, "desc")
+        ),
+        h("a", { class: "btn ghost go", href: p.url, rel: "noopener", "aria-label": t.viewRepo + ": " + p.name }, t.viewRepo)
+      )
+    ))
+  );
+}
+
+function buildCerts(t) {
+  return section("certs", t.certs,
+    h("ul", { class: "list" }, P.certs.map(c =>
+      h("li", { class: "cert panel" },
+        pixelIcon(c.name, [C.gold, C.cyan]),
+        h("div", {}, h("h3", {}, c.name), h("p", { class: "issuer" }, c.issuer)),
+        h("div", { class: "meta-col" },
+          h("p", { class: "meta" },
+            h("b", {}, t.issued), " ", c.issued,
+            c.expires ? [h("br"), h("b", {}, t.expires), " ", c.expires] : null
+          ),
+          h("p", { class: "meta" },
+            h("b", {}, t.credId), h("br"), h("code", {}, c.id),
+            c.verify ? [h("br"), h("a", { href: c.verify, rel: "noopener" }, t.verify)] : null
+          )
+        )
+      )
+    ))
+  );
+}
+
+function buildContact(t) {
+  const rows = [
+    ["GitHub", h("a", { href: P.github, rel: "noopener" }, P.github.replace("https://", ""))],
+    ["LinkedIn", h("a", { href: P.linkedin, rel: "noopener" }, P.linkedin.replace("https://www.", "").replace(/\/$/, ""))]
+  ];
+  if (P.email) rows.push([t.email, h("a", { href: "mailto:" + P.email }, P.email)]);
+  return section("contact", t.contact,
+    h("dl", { class: "contact panel" }, rows.map(([k, v]) => [h("dt", {}, k), h("dd", {}, v)]))
+  );
+}
+
+function render() {
+  const t = UI.en;
+  document.querySelectorAll("[data-k]").forEach(el => { el.textContent = t[el.dataset.k]; });
+  $("#copy").textContent = "© " + new Date().getFullYear() + " " + P.name;
+
+  $("#main").replaceChildren(
+    buildHero(t),
+    section("about", t.about, emptyOr(P.about, t)),
+    section("skills", t.skills,
+      h("ul", { class: "slots" }, P.skills.map(s =>
+        h("li", {}, h("div", { class: "slot", "aria-hidden": "true" }, s.abbr), h("span", {}, s.label))
+      ))
+    ),
+    buildProjects(t),
+    buildCerts(t),
+    buildContact(t)
+  );
+}
+
+let strataQueued = false;
+window.addEventListener("resize", () => {
+  if (strataQueued) return;
+  strataQueued = true;
+  requestAnimationFrame(() => { strataQueued = false; drawStrata(); });
+});
+
+render();
+drawStrata();
+</script>
+</body>
+</html>
