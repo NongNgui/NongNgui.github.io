@@ -45,7 +45,7 @@
   .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
   .panel{background:var(--panel);border:4px solid var(--edge);box-shadow:var(--bevel)}
   .px{display:block;flex:none;image-rendering:pixelated;border:4px solid var(--edge);background:var(--bg-2)}
-  .badge{display:block;flex:none;width:72px;height:72px;object-fit:contain}
+  .badge{display:block;flex:none;width:96px;height:96px;object-fit:contain;border:4px solid var(--edge)}
 
   /* buttons */
   .btn{display:inline-block;padding:10px 20px;font:700 1rem/1.5 var(--display);text-decoration:none;cursor:pointer;
@@ -112,7 +112,7 @@
   .tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:6px 0 0;padding:0;font-size:.875rem;color:var(--cyan)}
   .tags li{background:var(--bg-2);border:2px solid var(--edge);padding:0 10px}
 
-  .cert{display:grid;grid-template-columns:72px minmax(0,1.5fr) minmax(0,1.1fr);gap:8px 20px;align-items:start;padding:20px;border-left:8px solid var(--gold)}
+  .cert{display:grid;grid-template-columns:96px minmax(0,1.5fr) minmax(0,1.1fr);gap:8px 20px;align-items:start;padding:20px;border-left:8px solid var(--gold)}
   .cert h3{margin:0;font:700 1.25rem/1.4 var(--display)}
   .issuer{margin-top:2px!important;color:var(--muted)}
   .meta{color:var(--muted);font-size:.9375rem;line-height:1.7}
@@ -135,7 +135,7 @@
   @media (max-width:700px){
     .proj{grid-template-columns:72px minmax(0,1fr)}
     .proj .go{grid-column:1/-1;justify-self:start}
-    .cert{grid-template-columns:72px minmax(0,1fr)}
+    .cert{grid-template-columns:96px minmax(0,1fr)}
     .cert .meta-col{grid-column:1/-1}
   }
 </style>
@@ -194,7 +194,7 @@ const PROFILE = {
   certs: [
     {
       slug: "ceh-v13",
-      badge: "", // e.g. "assets/ceh-v13.png" (official badge, unmodified)
+      badge: "assets/ceh-v13.png", badgeBg: "#fff", // official logo, unmodified
       name: "Certified Ethical Hacker (CEH v13)",
       issuer: "EC-Council",
       issued: "Apr 2026",
@@ -204,7 +204,7 @@ const PROFILE = {
     },
     {
       slug: "web-app-pentest-apprentice",
-      badge: "", // e.g. "assets/web-app-pentest.png"
+      badge: "assets/web-app-pentest.png", badgeBg: "#000",
       name: "Certified Web App Penetration Testing Apprentice",
       issuer: "Knight Squad Academy",
       issued: "Mar 2026",
@@ -214,7 +214,7 @@ const PROFILE = {
     },
     {
       slug: "fortinet-fca",
-      badge: "", // e.g. "assets/fortinet-fca.png"
+      badge: "assets/fortinet-fca.png", badgeBg: "#fff",
       name: "Fortinet Certified Associate in Cybersecurity",
       issuer: "Fortinet",
       issued: "Mar 2026",
@@ -258,7 +258,7 @@ function h(tag, attrs = {}, ...kids) {
     if (k === "class") el.className = v;
     else el.setAttribute(k, v === true ? "" : v);
   }
-  for (const c of kids.flat()) {
+  for (const c of kids.flat(Infinity)) {
     if (c == null || c === false) continue;
     el.append(typeof c === "string" ? document.createTextNode(c) : c);
   }
@@ -422,8 +422,8 @@ function buildCerts(t) {
     h("ul", { class: "list" }, P.certs.map(c =>
       h("li", { class: "cert panel" },
         c.badge
-          ? h("img", { class: "badge", src: c.badge, alt: c.issuer + " credential badge", width: "72", height: "72" })
-          : pixelIcon(c.name, [C.gold, C.cyan]),
+          ? h("img", { class: "badge", src: c.badge, alt: c.issuer + " credential badge", width: "96", height: "96", style: "background:" + (c.badgeBg || "#fff") })
+          : pixelIcon(c.name, [C.gold, C.cyan], 96),
         h("div", {}, h("h3", {}, c.name), h("p", { class: "issuer" }, c.issuer)),
         h("div", { class: "meta-col" },
           h("p", { class: "meta" },
