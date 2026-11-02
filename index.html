@@ -10,7 +10,7 @@
 <meta property="og:description" content="Cybersecurity student focused on incident response, information assurance and web security.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700&family=Pixelify+Sans:wght@700&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0F1218;
@@ -24,7 +24,8 @@
     --cyan-d:#0B6A62;
     --red:#EF4B3F;
     --gold:#F4BC3C;
-    --display:"Pixelify Sans","IBM Plex Sans",system-ui,sans-serif;
+    --display:"Lexend","IBM Plex Sans",system-ui,sans-serif;
+    --pixel:"Pixelify Sans","Lexend",system-ui,sans-serif;
     --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
     --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     --bevel:inset -4px -4px 0 rgba(0,0,0,.35),inset 4px 4px 0 rgba(255,255,255,.08);
@@ -56,14 +57,14 @@
 
   /* top bar */
   .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:20px 0}
-  .brand{font:700 1.25rem/1.3 var(--display);padding:4px 12px;background:var(--cyan);color:#06201C;border:4px solid var(--edge);box-shadow:var(--bevel);text-decoration:none}
+  .brand{font:700 1.25rem/1.3 var(--pixel);padding:4px 12px;background:var(--cyan);color:#06201C;border:4px solid var(--edge);box-shadow:var(--bevel);text-decoration:none}
   .top nav{display:flex;gap:24px;flex-wrap:wrap}
   .top nav a{color:var(--text);text-decoration:none;font-weight:500}
   .top nav a:hover{color:var(--cyan);text-decoration:underline}
 
   /* hero */
   .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:40px 48px;align-items:center;padding:48px 0 72px}
-  .hero h1{font:700 clamp(2.5rem,7vw,5rem)/1.05 var(--display);margin:24px 0 32px;text-shadow:.055em .055em 0 var(--cyan-d);overflow-wrap:anywhere}
+  .hero h1{font:700 clamp(2.25rem,6vw,4.25rem)/1.1 var(--display);letter-spacing:-.02em;margin:24px 0 32px;text-shadow:.055em .055em 0 var(--cyan-d);overflow-wrap:anywhere}
   .hero h1 span{display:block}
   .btns{display:flex;gap:14px;flex-wrap:wrap}
 
@@ -109,6 +110,19 @@
   .tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0;font-size:.9375rem;color:var(--cyan)}
   .tags li{background:var(--bg-2);border:2px solid var(--edge);padding:0 12px}
 
+  /* skill blocks (click to expand) */
+  .group{margin:0 0 14px;font:700 1.125rem/1.4 var(--display);color:var(--muted)}
+  .skillgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start;margin-bottom:36px}
+  .skill{background:var(--panel);border:4px solid var(--edge);box-shadow:var(--bevel)}
+  .skill summary{display:flex;align-items:center;gap:16px;padding:14px 16px;cursor:pointer;list-style:none}
+  .skill summary::-webkit-details-marker{display:none}
+  .skill summary:hover{background:var(--panel-2)}
+  .skill .slot{width:56px;height:56px;margin:0;font-size:1rem;letter-spacing:.02em}
+  .skill .name{flex:1;font:700 1.125rem/1.35 var(--display)}
+  .skill .chev{flex:none;width:12px;height:12px;margin:0 6px 4px 0;border-right:4px solid var(--cyan);border-bottom:4px solid var(--cyan);transform:rotate(45deg)}
+  .skill[open] .chev{margin:4px 6px 0 0;transform:rotate(-135deg)}
+  .skill .more{padding:0 16px 18px 88px;color:var(--muted)}
+
   /* experience + education */
   .exp{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:baseline;padding:20px 24px}
   .exp h3{margin:0;font:700 1.375rem/1.35 var(--display)}
@@ -118,8 +132,6 @@
   .points{grid-column:1/-1;list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
   .points li{position:relative;padding-left:22px}
   .points li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:var(--cyan);box-shadow:inset -2px -2px 0 rgba(0,0,0,.35)}
-  .exp .coursework{grid-column:1/-1;margin-top:8px!important;color:var(--muted)}
-  .exp .coursework b{color:var(--text);font-weight:600}
 
   .proj{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:8px 20px;align-items:center;padding:20px}
   .proj h3{margin:0;font:700 1.5rem/1.3 var(--display);overflow-wrap:anywhere}
@@ -144,7 +156,7 @@
 
   @media (max-width:900px){
     .hero{grid-template-columns:1fr;padding:32px 0 56px}
-    .hero h1{font-size:clamp(2.75rem,11vw,5.5rem)}
+    .hero h1{font-size:clamp(2.5rem,10vw,4.5rem)}
   }
   @media (max-width:700px){
     .proj{grid-template-columns:72px minmax(0,1fr)}
@@ -153,6 +165,8 @@
     .cert .meta-col{grid-column:1/-1}
     .exp{grid-template-columns:1fr}
     .exp .when{white-space:normal}
+    .skillgrid{grid-template-columns:1fr}
+    .skill .more{padding-left:16px}
   }
 </style>
 </head>
@@ -189,26 +203,65 @@ const PROFILE = {
   name: "Kitsakorn Seehaklang",
   github: "https://github.com/NongNgui",
   linkedin: "https://www.linkedin.com/in/kitsakorn-seehaklang-b594813b9/",
-  email: "",
+  email: "Kitsakorn.see@gmail.com",
   location: "Khon Kaen, Thailand",
   avatar: "",
 
-  headline: "Cybersecurity student focused on incident response and information assurance, aiming for SOC analyst and DevSecOps roles.",
+  headline: "Fourth-year cybersecurity student focused on ISO 27001, incident response and information assurance, aiming for SOC analyst and DevSecOps roles.",
 
-  about: "I am a third-year Cybersecurity student at Khon Kaen University. I focus on information assurance and incident response, and I use Python for security automation. I know ISO 27001 and risk assessment from my coursework. I hold CEH v13, a web application penetration testing apprentice certificate and the Fortinet Certified Associate in Cybersecurity, and I take part in CTFs and hackathons. I am looking for a role as a SOC analyst or DevSecOps engineer.",
+  about: "I am a fourth-year Cybersecurity student at Khon Kaen University. I focus on information assurance and incident response, and I use Python for security automation. I work with ISO/IEC 27001:2022, from risk assessment and gap analysis to audit preparation, and I apply LLMs to automate document drafting for it. I hold CEH v13, a web application penetration testing apprentice certificate and the Fortinet Certified Associate in Cybersecurity, and I take part in CTFs and hackathons. I am looking for a role as a SOC analyst or DevSecOps engineer.",
 
-  skills: [
-    { abbr: "SEC", label: "Cybersecurity fundamentals" },
-    { abbr: "NET", label: "Networking fundamentals" },
-    { abbr: "IR",  label: "Incident response" },
-    { abbr: "DF",  label: "Digital forensics" },
-    { abbr: "ISO", label: "ISO 27001 and risk assessment" },
-    { abbr: "WEB", label: "Web security and penetration testing" },
-    { abbr: "EH",  label: "Ethical hacking" },
-    { abbr: "PY",  label: "Python for security automation" }
+  skillGroups: [
+    {
+      title: "Security",
+      items: [
+        {
+          abbr: "ISO", name: "ISO/IEC 27001:2022 Implementation and Auditing",
+          more: "Understanding of the information security standard, including audit document preparation, gap analysis, risk assessment and the assessment process under the international standard."
+        },
+        {
+          abbr: "WEB", name: "Web Application Penetration Testing",
+          more: "Testing web applications for weaknesses, covering the OWASP Top 10, authentication bypass and different types of injection. Backed by CEH v13 and the Web App Penetration Testing Apprentice certificate."
+        },
+        {
+          abbr: "SEC", name: "Information Security Fundamentals",
+          more: "Foundations of information security based on international guidance (ISC2 and general security concepts), together with networking fundamentals."
+        },
+        {
+          abbr: "IR", name: "Incident Response and Digital Forensics",
+          more: "Incident response labs and digital forensics challenges, including CTF competitions."
+        }
+      ]
+    },
+    {
+      title: "AI and automation",
+      items: [
+        {
+          abbr: "AI", name: "AI-Assisted Workflow Automation",
+          more: "Using LLMs to solve real business problems with domain-specific AI applications, especially generating documents and preparing audits automatically."
+        },
+        {
+          abbr: "PE", name: "Prompt Engineering and Context Design",
+          more: "Designing prompts and data architecture so that AI output meets the requirements of security standards."
+        },
+        {
+          abbr: "SYS", name: "System Integration and Local AI Deployment",
+          more: "Connecting tools together and applying generative AI models to handle documents and process data automatically."
+        }
+      ]
+    },
+    {
+      title: "Engineering",
+      items: [
+        {
+          abbr: "DEV", name: "Developer Tooling and Environments",
+          more: "Fluent with professional tools such as JetBrains IDEs and Git version control, and with managing different development environments. I write Python for security automation and Node.js for backends, and I have built a CI/CD pipeline with automatic rollback."
+        }
+      ]
+    }
   ],
 
-  tools: ["Wireshark", "Ghidra", "VMware", "IntelliJ IDEA", "Node.js", "CI/CD pipelines"],
+  tools: ["JetBrains IDEs", "Git", "Python", "Node.js", "VMware", "Wireshark", "Ghidra", "CI/CD pipelines"],
 
   experience: [
     {
@@ -285,7 +338,7 @@ const PROFILE = {
     },
     {
       slug: "cisco-it-essentials",
-      badge: "", badgeBg: "#fff",
+      badge: "assets/cisco-netacad.png", badgeBg: "#fff",
       name: "IT Essentials",
       issuer: "Cisco Networking Academy (digital badge)",
       issued: "Nov 2025",
@@ -295,7 +348,7 @@ const PROFILE = {
     },
     {
       slug: "cisco-junior-cyber-analyst",
-      badge: "", badgeBg: "#fff",
+      badge: "assets/cisco-netacad.png", badgeBg: "#fff",
       name: "Junior Cybersecurity Analyst Career Path",
       issuer: "Cisco Networking Academy (digital badge)",
       issued: "Mar 2025",
@@ -306,10 +359,9 @@ const PROFILE = {
   ],
 
   education: {
-    degree: "B.Sc. in Cybersecurity (3rd year)",
+    degree: "B.Sc. in Cybersecurity (4th year)",
     school: "Khon Kaen University, College of Computing",
-    when: "2023 to present",
-    coursework: "Network security basics, digital forensics, risk assessment (ISO 27001 and COBIT), incident response labs."
+    when: "2023 to present"
   }
 };
 
@@ -320,7 +372,7 @@ const T = {
   navExperience: "Experience", navProjects: "Projects", navCerts: "Certifications", navContact: "Contact",
   about: "About", skills: "Skills", tools: "Tools and platforms",
   experience: "Experience", projects: "Projects", certs: "Certifications and badges",
-  education: "Education", coursework: "Coursework:", contact: "Contact",
+  education: "Education", contact: "Contact",
   soon: "Details coming soon.",
   privA: "Most of my work lives in private repositories, and a lot of it is",
   redacted: "confidential",
@@ -489,9 +541,19 @@ function buildHero() {
 
 function buildSkills() {
   return section("skills", T.skills,
-    h("ul", { class: "slots" }, P.skills.map(s =>
-      h("li", {}, h("div", { class: "slot", "aria-hidden": "true" }, s.abbr), h("span", {}, s.label))
-    )),
+    P.skillGroups.map(g => [
+      h("h3", { class: "group" }, g.title),
+      h("div", { class: "skillgrid" }, g.items.map(s =>
+        h("details", { class: "skill" },
+          h("summary", {},
+            h("div", { class: "slot", "aria-hidden": "true" }, s.abbr),
+            h("span", { class: "name" }, s.name),
+            h("span", { class: "chev", "aria-hidden": "true" })
+          ),
+          h("p", { class: "more" }, s.more)
+        )
+      ))
+    ]),
     P.tools && P.tools.length ? [
       h("h3", { class: "sub" }, T.tools),
       h("ul", { class: "tags" }, P.tools.map(x => h("li", {}, x)))
@@ -560,8 +622,7 @@ function buildEducation() {
   return section("education", T.education,
     h("div", { class: "exp panel" },
       h("div", {}, h("h3", {}, e.degree), h("p", { class: "org" }, e.school)),
-      h("p", { class: "when" }, e.when),
-      h("p", { class: "coursework" }, h("b", {}, T.coursework), " ", e.coursework)
+      h("p", { class: "when" }, e.when)
     )
   );
 }
