@@ -47,11 +47,6 @@
   .panel{background:var(--panel);border:4px solid var(--edge);box-shadow:var(--bevel)}
   .px{display:block;flex:none;image-rendering:pixelated;border:4px solid var(--edge);background:var(--bg-2)}
   .badge{display:block;flex:none;width:96px;height:96px;object-fit:contain;border:4px solid var(--edge)}
-  .avatar-sprite{display:block;flex:none;width:96px;height:96px;image-rendering:pixelated;border:4px solid var(--edge);background:var(--bg-2) url("assets/avatar-sheet.png") 0% 0/1200% 100% no-repeat}
-  @media (prefers-reduced-motion:no-preference){
-    .avatar-sprite{animation:avatarspin 3.6s steps(12) infinite}
-    @keyframes avatarspin{to{background-position:100% 0}}
-  }
 
   /* buttons */
   .btn{display:inline-block;padding:10px 20px;font:700 1rem/1.5 var(--display);text-decoration:none;cursor:pointer;
@@ -217,7 +212,9 @@
    EDIT YOUR CONTENT HERE
    - Leave a description as "" to show "Details coming soon."
    - avatar: put an image path/URL (e.g. "assets/me.png") to replace the generated pixel avatar.
-   - avatarSprite: set true to use the animated assets/avatar-sheet.png (12-frame) pixel-art avatar instead.
+   - avatarGif: path to an animated GIF to use as the avatar instead (e.g. "assets/avatar.gif").
+     avatarGifStatic: a still frame of it (e.g. "assets/avatar-static.png"), shown instead when the
+     visitor's OS has "reduce motion" turned on.
    - badge: path to an official, unmodified logo/badge image. badgeBg is the colour behind it.
    - projects[].image: path to a screenshot, e.g. "assets/neet-topup.png" (16:10, about 1280x800).
      Leave "" to show a generated pixel icon. desc and tags appear when the project is opened.
@@ -230,7 +227,8 @@ const PROFILE = {
   email: "Kitsakorn.see@gmail.com",
   location: "Khon Kaen, Thailand",
   avatar: "",
-  avatarSprite: true,
+  avatarGif: "assets/avatar.gif",
+  avatarGifStatic: "assets/avatar-static.png",
 
   headline: "Fourth-year cybersecurity student focused on ISO 27001, incident response and information assurance, aiming for SOC analyst and DevSecOps roles.",
 
@@ -553,8 +551,9 @@ function buildHero() {
     bar.setAttribute("aria-pressed", bar.getAttribute("aria-pressed") === "true" ? "false" : "true");
   });
   const [first, ...rest] = P.name.split(" ");
-  const avatar = P.avatarSprite
-    ? h("div", { class: "avatar-sprite", role: "img", "aria-label": P.name + " pixel-art avatar" })
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const avatar = P.avatarGif
+    ? h("img", { class: "px", src: reduceMotion ? P.avatarGifStatic : P.avatarGif, alt: "", width: "96", height: "96" })
     : P.avatar
     ? h("img", { class: "px", src: P.avatar, alt: "", width: "96", height: "96" })
     : pixelIcon(P.name, [C.cyan, C.gold, C.red], 96);
