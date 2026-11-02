@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0F1218">
 <title>Kitsakorn Seehaklang, Cybersecurity Portfolio</title>
-<meta name="description" content="Portfolio of Kitsakorn Seehaklang: cybersecurity, ethical hacking and web application penetration testing. CEH v13, Fortinet FCA.">
+<meta name="description" content="Cybersecurity student at Khon Kaen University focused on incident response and information assurance. CEH v13, Fortinet FCA, CTF and hackathon experience.">
 <meta property="og:title" content="Kitsakorn Seehaklang, Cybersecurity Portfolio">
-<meta property="og:description" content="Cybersecurity, ethical hacking and web application penetration testing.">
+<meta property="og:description" content="Cybersecurity student focused on incident response, information assurance and web security.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -87,7 +87,6 @@
     .tl{animation:show .01s linear var(--d,0s) both}
     .cmd{animation:typing var(--dur,.4s) steps(var(--n,1)) var(--d,0s) both}
     .cursor{animation:blink 1.05s steps(1) infinite}
-    .static .tl,.static .cmd{animation:none}
     @keyframes show{from{opacity:0}}
     @keyframes typing{from{width:0}}
     @keyframes blink{50%{opacity:0}}
@@ -98,19 +97,34 @@
   .sec>h2{display:flex;align-items:center;gap:14px;margin:0 0 24px;font:700 1.75rem/1.3 var(--display)}
   .sec>h2::before{content:"";width:18px;height:18px;background:var(--cyan);border:3px solid var(--edge);box-shadow:var(--bevel)}
   .sec p{margin:0}
+  .sub{margin:36px 0 14px;font:700 1.125rem/1.4 var(--display)}
   .empty{color:var(--muted)}
+  .about{max-width:68ch}
   .note{color:var(--muted);max-width:62ch;margin-bottom:24px!important}
   .list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
 
   .slots{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:24px}
   .slots li{width:120px;text-align:center;font-size:.9375rem;line-height:1.45}
   .slot{display:grid;place-items:center;width:88px;height:88px;margin:0 auto 10px;background:var(--bg-2);border:4px solid var(--edge);box-shadow:var(--bevel);font:700 1.5rem var(--display);color:var(--cyan)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0;font-size:.9375rem;color:var(--cyan)}
+  .tags li{background:var(--bg-2);border:2px solid var(--edge);padding:0 12px}
+
+  /* experience + education */
+  .exp{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:baseline;padding:20px 24px}
+  .exp h3{margin:0;font:700 1.375rem/1.35 var(--display)}
+  .exp .org{margin-top:2px!important;color:var(--muted)}
+  .exp .when{color:var(--gold);font:500 .875rem var(--mono);white-space:nowrap}
+  .award{display:inline-block;margin-top:8px;padding:0 12px;background:var(--gold);color:#1A1405;border:2px solid var(--edge);font:600 .875rem/1.7 var(--body)}
+  .points{grid-column:1/-1;list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+  .points li{position:relative;padding-left:22px}
+  .points li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:var(--cyan);box-shadow:inset -2px -2px 0 rgba(0,0,0,.35)}
+  .exp .coursework{grid-column:1/-1;margin-top:8px!important;color:var(--muted)}
+  .exp .coursework b{color:var(--text);font-weight:600}
 
   .proj{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:8px 20px;align-items:center;padding:20px}
   .proj h3{margin:0;font:700 1.5rem/1.3 var(--display);overflow-wrap:anywhere}
   .proj .desc{margin-top:4px;color:var(--muted);max-width:60ch}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:6px 0 0;padding:0;font-size:.875rem;color:var(--cyan)}
-  .tags li{background:var(--bg-2);border:2px solid var(--edge);padding:0 10px}
+  .proj .tags{margin-top:6px;font-size:.875rem}
 
   .cert{display:grid;grid-template-columns:96px minmax(0,1.5fr) minmax(0,1.1fr);gap:8px 20px;align-items:start;padding:20px;border-left:8px solid var(--gold)}
   .cert h3{margin:0;font:700 1.25rem/1.4 var(--display)}
@@ -137,6 +151,8 @@
     .proj .go{grid-column:1/-1;justify-self:start}
     .cert{grid-template-columns:96px minmax(0,1fr)}
     .cert .meta-col{grid-column:1/-1}
+    .exp{grid-template-columns:1fr}
+    .exp .when{white-space:normal}
   }
 </style>
 </head>
@@ -145,6 +161,7 @@
   <header class="top">
     <a class="brand" href="#" aria-label="Kitsakorn Seehaklang, top of page">KS</a>
     <nav aria-label="Main">
+      <a href="#experience" data-k="navExperience"></a>
       <a href="#projects" data-k="navProjects"></a>
       <a href="#certs" data-k="navCerts"></a>
       <a href="#contact" data-k="navContact"></a>
@@ -164,24 +181,68 @@
 /* ============================================================
    EDIT YOUR CONTENT HERE
    - Leave a description as "" to show "Details coming soon."
-   - avatar: put an image path/URL (e.g. "me.png") to replace the generated pixel avatar.
-   - Fill desc / about / email later, save, and push to GitHub.
+   - avatar: put an image path/URL (e.g. "assets/me.png") to replace the generated pixel avatar.
+   - badge: path to an official, unmodified logo/badge image. badgeBg is the colour behind it.
+   - email: leave "" to hide it. Phone number is intentionally not shown on this public page.
    ============================================================ */
 const PROFILE = {
   name: "Kitsakorn Seehaklang",
   github: "https://github.com/NongNgui",
   linkedin: "https://www.linkedin.com/in/kitsakorn-seehaklang-b594813b9/",
   email: "",
+  location: "Khon Kaen, Thailand",
   avatar: "",
 
-  headline: "Cybersecurity, ethical hacking and web application penetration testing.",
+  headline: "Cybersecurity student focused on incident response and information assurance, aiming for SOC analyst and DevSecOps roles.",
 
-  about: "",
+  about: "I am a third-year Cybersecurity student at Khon Kaen University. I focus on information assurance and incident response, and I use Python for security automation. I know ISO 27001 and risk assessment from my coursework. I hold CEH v13, a web application penetration testing apprentice certificate and the Fortinet Certified Associate in Cybersecurity, and I take part in CTFs and hackathons. I am looking for a role as a SOC analyst or DevSecOps engineer.",
 
   skills: [
-    { abbr: "SEC", label: "Cybersecurity" },
+    { abbr: "SEC", label: "Cybersecurity fundamentals" },
+    { abbr: "NET", label: "Networking fundamentals" },
+    { abbr: "IR",  label: "Incident response" },
+    { abbr: "DF",  label: "Digital forensics" },
+    { abbr: "ISO", label: "ISO 27001 and risk assessment" },
+    { abbr: "WEB", label: "Web security and penetration testing" },
     { abbr: "EH",  label: "Ethical hacking" },
-    { abbr: "WEB", label: "Web application penetration testing" }
+    { abbr: "PY",  label: "Python for security automation" }
+  ],
+
+  tools: ["Wireshark", "Ghidra", "VMware", "IntelliJ IDEA", "Node.js", "CI/CD pipelines"],
+
+  experience: [
+    {
+      title: "Cyber Warrior Hackathon 2025",
+      org: "Project: Police Risk Analysis",
+      when: "Jul 2025",
+      award: "Popular Vote Award",
+      points: [
+        "Built a responsive web platform to visualize and manage operational security risks for law enforcement.",
+        "Wrote the Node.js backend that processes risk assessment data and generates real-time security reports.",
+        "Designed a dashboard with interactive charts and risk-scoring heatmaps to show high-risk areas."
+      ]
+    },
+    {
+      title: "Thailand Cyber Top Talent 2025, Senior Level",
+      org: "National CTF by the National Cyber Security Agency (NCSA)",
+      when: "2025",
+      award: "Qualifier participant",
+      points: [
+        "Reached the Senior-level qualification round of the national CTF.",
+        "Solved challenges in digital forensics, SQL injection and web security."
+      ]
+    },
+    {
+      title: "CI/CD Pipeline Automation with Secure Deployment and Rollback",
+      org: "Academic project",
+      when: "2025",
+      award: "",
+      points: [
+        "Automated the build, test and deployment process to cut manual configuration errors.",
+        "Added automatic rollback to the last stable version when a deployment fails.",
+        "Sent real-time pipeline status to Discord with webhooks so the team can react to failures quickly."
+      ]
+    }
   ],
 
   projects: [
@@ -194,7 +255,7 @@ const PROFILE = {
   certs: [
     {
       slug: "ceh-v13",
-      badge: "assets/ceh-v13.png", badgeBg: "#fff", // official logo, unmodified
+      badge: "assets/ceh-v13.png", badgeBg: "#fff",
       name: "Certified Ethical Hacker (CEH v13)",
       issuer: "EC-Council",
       issued: "Apr 2026",
@@ -221,27 +282,54 @@ const PROFILE = {
       expires: "Mar 2028",
       id: "1644690472KS",
       verify: ""
+    },
+    {
+      slug: "cisco-it-essentials",
+      badge: "", badgeBg: "#fff",
+      name: "IT Essentials",
+      issuer: "Cisco Networking Academy (digital badge)",
+      issued: "Nov 2025",
+      expires: null,
+      id: "",
+      verify: ""
+    },
+    {
+      slug: "cisco-junior-cyber-analyst",
+      badge: "", badgeBg: "#fff",
+      name: "Junior Cybersecurity Analyst Career Path",
+      issuer: "Cisco Networking Academy (digital badge)",
+      issued: "Mar 2025",
+      expires: null,
+      id: "",
+      verify: ""
     }
-  ]
+  ],
+
+  education: {
+    degree: "B.Sc. in Cybersecurity (3rd year)",
+    school: "Khon Kaen University, College of Computing",
+    when: "2023 to present",
+    coursework: "Network security basics, digital forensics, risk assessment (ISO 27001 and COBIT), incident response labs."
+  }
 };
 
 /* ============================================================
-   UI text (Thai / English)
+   UI text
    ============================================================ */
-const UI = {
-  en: {
-    navProjects: "Projects", navCerts: "Certifications", navContact: "Contact",
-    about: "About", skills: "Skills", projects: "Projects", certs: "Certifications", contact: "Contact",
-    soon: "Details coming soon.",
-    privA: "Most of my work lives in private repositories, and a lot of it is",
-    redacted: "confidential",
-    privB: ". What I can share is below.",
-    hintTerm: "# click the bar to reveal it",
-    projectsNote: "Public repositories from my GitHub. Most other work is private, and I can walk through it on a screen share.",
-    viewRepo: "View on GitHub",
-    issued: "Issued", expires: "Expires", credId: "Credential ID", verify: "Verify credential",
-    email: "Email"
-  }
+const T = {
+  navExperience: "Experience", navProjects: "Projects", navCerts: "Certifications", navContact: "Contact",
+  about: "About", skills: "Skills", tools: "Tools and platforms",
+  experience: "Experience", projects: "Projects", certs: "Certifications and badges",
+  education: "Education", coursework: "Coursework:", contact: "Contact",
+  soon: "Details coming soon.",
+  privA: "Most of my work lives in private repositories, and a lot of it is",
+  redacted: "confidential",
+  privB: ". What I can share is below.",
+  hintTerm: "# click the bar to reveal it",
+  projectsNote: "Public repositories from my GitHub. Most other work is private, and I can walk through it on a screen share.",
+  viewRepo: "View on GitHub",
+  issued: "Issued", expires: "Expires", credId: "Credential ID", verify: "Verify credential",
+  email: "Email", location: "Location"
 };
 
 /* ============================================================
@@ -339,7 +427,6 @@ function drawStrata() {
   }
 }
 
-
 /* ============================================================
    Sections
    ============================================================ */
@@ -347,18 +434,18 @@ function section(id, title, ...content) {
   return h("section", { class: "sec", id }, h("h2", {}, title), ...content);
 }
 
-function emptyOr(text, t, cls = "") {
+function emptyOr(text, cls = "") {
   return text
     ? h("p", { class: cls }, text)
-    : h("p", { class: ("empty " + cls).trim() }, t.soon);
+    : h("p", { class: ("empty " + cls).trim() }, T.soon);
 }
 
-function buildTerminal(t, bar) {
+function buildTerminal(bar) {
   const steps = [
     { cmd: "whoami", out: [P.name] },
     { cmd: "cat focus.txt", out: [P.headline] },
-    { cmd: "ls certs/", out: [P.certs.map(c => c.slug).join("  ")] },
-    { cmd: "cat private.txt", out: [t.privA, " ", bar, t.privB], note: t.hintTerm }
+    { cmd: "ls certs/", out: [P.certs.slice(0, 3).map(c => c.slug).join("  ")] },
+    { cmd: "cat private.txt", out: [T.privA, " ", bar, T.privB], note: T.hintTerm }
   ];
   const rows = [];
   let d = 0.5;
@@ -378,8 +465,8 @@ function buildTerminal(t, bar) {
   );
 }
 
-function buildHero(t) {
-  const bar = h("button", { class: "redact", type: "button", "aria-pressed": "false" }, t.redacted);
+function buildHero() {
+  const bar = h("button", { class: "redact", type: "button", "aria-pressed": "false" }, T.redacted);
   bar.addEventListener("click", () => {
     bar.setAttribute("aria-pressed", bar.getAttribute("aria-pressed") === "true" ? "false" : "true");
   });
@@ -396,29 +483,57 @@ function buildHero(t) {
         h("a", { class: "btn ghost", href: P.linkedin, rel: "noopener" }, "LinkedIn")
       )
     ),
-    buildTerminal(t, bar)
+    buildTerminal(bar)
   );
 }
 
-function buildProjects(t) {
-  return section("projects", t.projects,
-    h("p", { class: "note" }, t.projectsNote),
+function buildSkills() {
+  return section("skills", T.skills,
+    h("ul", { class: "slots" }, P.skills.map(s =>
+      h("li", {}, h("div", { class: "slot", "aria-hidden": "true" }, s.abbr), h("span", {}, s.label))
+    )),
+    P.tools && P.tools.length ? [
+      h("h3", { class: "sub" }, T.tools),
+      h("ul", { class: "tags" }, P.tools.map(x => h("li", {}, x)))
+    ] : null
+  );
+}
+
+function buildExperience() {
+  return section("experience", T.experience,
+    h("ul", { class: "list" }, P.experience.map(e =>
+      h("li", { class: "exp panel" },
+        h("div", {},
+          h("h3", {}, e.title),
+          h("p", { class: "org" }, e.org),
+          e.award ? h("span", { class: "award" }, e.award) : null
+        ),
+        h("p", { class: "when" }, e.when),
+        h("ul", { class: "points" }, e.points.map(x => h("li", {}, x)))
+      )
+    ))
+  );
+}
+
+function buildProjects() {
+  return section("projects", T.projects,
+    h("p", { class: "note" }, T.projectsNote),
     h("ul", { class: "list" }, P.projects.map(p =>
       h("li", { class: "proj panel" },
         pixelIcon(p.name, [C.cyan, C.red, C.gold]),
         h("div", {},
           h("h3", {}, p.name),
           p.tags && p.tags.length ? h("ul", { class: "tags" }, p.tags.map(x => h("li", {}, x))) : null,
-          emptyOr(p.desc, t, "desc")
+          emptyOr(p.desc, "desc")
         ),
-        h("a", { class: "btn ghost go", href: p.url, rel: "noopener", "aria-label": t.viewRepo + ": " + p.name }, t.viewRepo)
+        h("a", { class: "btn ghost go", href: p.url, rel: "noopener", "aria-label": T.viewRepo + ": " + p.name }, T.viewRepo)
       )
     ))
   );
 }
 
-function buildCerts(t) {
-  return section("certs", t.certs,
+function buildCerts() {
+  return section("certs", T.certs,
     h("ul", { class: "list" }, P.certs.map(c =>
       h("li", { class: "cert panel" },
         c.badge
@@ -427,46 +542,55 @@ function buildCerts(t) {
         h("div", {}, h("h3", {}, c.name), h("p", { class: "issuer" }, c.issuer)),
         h("div", { class: "meta-col" },
           h("p", { class: "meta" },
-            h("b", {}, t.issued), " ", c.issued,
-            c.expires ? [h("br"), h("b", {}, t.expires), " ", c.expires] : null
+            h("b", {}, T.issued), " ", c.issued,
+            c.expires ? [h("br"), h("b", {}, T.expires), " ", c.expires] : null
           ),
-          h("p", { class: "meta" },
-            h("b", {}, t.credId), h("br"), h("code", {}, c.id),
-            c.verify ? [h("br"), h("a", { href: c.verify, rel: "noopener" }, t.verify)] : null
-          )
+          c.id || c.verify ? h("p", { class: "meta" },
+            c.id ? [h("b", {}, T.credId), h("br"), h("code", {}, c.id)] : null,
+            c.verify ? [c.id ? h("br") : null, h("a", { href: c.verify, rel: "noopener" }, T.verify)] : null
+          ) : null
         )
       )
     ))
   );
 }
 
-function buildContact(t) {
+function buildEducation() {
+  const e = P.education;
+  return section("education", T.education,
+    h("div", { class: "exp panel" },
+      h("div", {}, h("h3", {}, e.degree), h("p", { class: "org" }, e.school)),
+      h("p", { class: "when" }, e.when),
+      h("p", { class: "coursework" }, h("b", {}, T.coursework), " ", e.coursework)
+    )
+  );
+}
+
+function buildContact() {
   const rows = [
     ["GitHub", h("a", { href: P.github, rel: "noopener" }, P.github.replace("https://", ""))],
     ["LinkedIn", h("a", { href: P.linkedin, rel: "noopener" }, P.linkedin.replace("https://www.", "").replace(/\/$/, ""))]
   ];
-  if (P.email) rows.push([t.email, h("a", { href: "mailto:" + P.email }, P.email)]);
-  return section("contact", t.contact,
+  if (P.email) rows.push([T.email, h("a", { href: "mailto:" + P.email }, P.email)]);
+  if (P.location) rows.push([T.location, P.location]);
+  return section("contact", T.contact,
     h("dl", { class: "contact panel" }, rows.map(([k, v]) => [h("dt", {}, k), h("dd", {}, v)]))
   );
 }
 
 function render() {
-  const t = UI.en;
-  document.querySelectorAll("[data-k]").forEach(el => { el.textContent = t[el.dataset.k]; });
+  document.querySelectorAll("[data-k]").forEach(el => { el.textContent = T[el.dataset.k]; });
   $("#copy").textContent = "© " + new Date().getFullYear() + " " + P.name;
 
   $("#main").replaceChildren(
-    buildHero(t),
-    section("about", t.about, emptyOr(P.about, t)),
-    section("skills", t.skills,
-      h("ul", { class: "slots" }, P.skills.map(s =>
-        h("li", {}, h("div", { class: "slot", "aria-hidden": "true" }, s.abbr), h("span", {}, s.label))
-      ))
-    ),
-    buildProjects(t),
-    buildCerts(t),
-    buildContact(t)
+    buildHero(),
+    section("about", T.about, emptyOr(P.about, "about")),
+    buildSkills(),
+    buildExperience(),
+    buildProjects(),
+    buildCerts(),
+    buildEducation(),
+    buildContact()
   );
 }
 
