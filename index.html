@@ -66,6 +66,9 @@
   .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:40px 48px;align-items:center;padding:48px 0 72px}
   .hero h1{font:700 clamp(2.25rem,6vw,4.25rem)/1.1 var(--display);letter-spacing:-.02em;margin:24px 0 32px;text-shadow:.055em .055em 0 var(--cyan-d);overflow-wrap:anywhere}
   .hero h1 span{display:block}
+  .portrait{position:relative;width:168px;margin-bottom:28px}
+  .portrait .photo{display:block;width:168px;height:168px;object-fit:cover;border:4px solid var(--edge);background:var(--bg-2);box-shadow:var(--bevel),10px 10px 0 rgba(71,224,208,.16)}
+  .portrait .px{position:absolute;right:-30px;bottom:-26px;width:76px;height:76px}
   .btns{display:flex;gap:14px;flex-wrap:wrap}
 
   .term{background:var(--bg-2);border:4px solid var(--edge);box-shadow:var(--bevel),10px 10px 0 rgba(71,224,208,.16)}
@@ -212,6 +215,7 @@
    EDIT YOUR CONTENT HERE
    - Leave a description as "" to show "Details coming soon."
    - avatar: put an image path/URL (e.g. "assets/me.png") to replace the generated pixel avatar.
+   - photo: your real photo shown in the hero (e.g. "assets/photo.jpg"); the pixel avatar sits on its corner.
    - avatarGif: path to an animated GIF to use as the avatar instead (e.g. "assets/avatar.gif").
      avatarGifStatic: a still frame of it (e.g. "assets/avatar-static.png"), shown instead when the
      visitor's OS has "reduce motion" turned on.
@@ -227,6 +231,7 @@ const PROFILE = {
   email: "Kitsakorn.see@gmail.com",
   location: "Khon Kaen, Thailand",
   avatar: "",
+  photo: "assets/photo.jpg",
   avatarGif: "assets/avatar.gif",
   avatarGifStatic: "assets/avatar-static.png",
 
@@ -557,9 +562,14 @@ function buildHero() {
     : P.avatar
     ? h("img", { class: "px", src: P.avatar, alt: "", width: "96", height: "96" })
     : pixelIcon(P.name, [C.cyan, C.gold, C.red], 96);
+  const top = P.photo
+    ? h("div", { class: "portrait" },
+        h("img", { class: "photo", src: P.photo, alt: "Photo of " + P.name, width: "168", height: "168" }),
+        avatar)
+    : avatar;
   return h("section", { class: "hero" },
     h("div", {},
-      avatar,
+      top,
       h("h1", {}, h("span", {}, first), " ", h("span", {}, rest.join(" "))),
       h("div", { class: "btns" },
         h("a", { class: "btn", href: P.github, rel: "noopener" }, "GitHub"),
