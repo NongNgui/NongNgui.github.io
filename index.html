@@ -235,9 +235,9 @@ const PROFILE = {
   avatarGif: "assets/avatar.gif",
   avatarGifStatic: "assets/avatar-static.png",
 
-  headline: "Fourth-year cybersecurity student focused on ISO 27001, incident response and information assurance, aiming for SOC analyst and DevSecOps roles.",
+  headline: "Fourth-year cybersecurity student who builds with AI, ready to start in DevSecOps or AI-driven software development while completing my degree.",
 
-  about: "I am a fourth-year Cybersecurity student at Khon Kaen University. I focus on information assurance and incident response, and I use Python for security automation. I work with ISO/IEC 27001:2022, from risk assessment and gap analysis to audit preparation, and I apply LLMs to automate document drafting for it. I hold CEH v13, a web application penetration testing apprentice certificate and the Fortinet Certified Associate in Cybersecurity, and I take part in CTFs and hackathons. I am looking for a role as a SOC analyst or DevSecOps engineer.",
+  about: "I am a fourth-year Cybersecurity student at Khon Kaen University. I have completed all coursework and my final-year project, and I am available to start full-time now while my degree is conferred in April 2027. I combine practical AI skills with hands-on CI/CD automation using GitHub Actions, Linux server deployment and ISO/IEC 27001 compliance. For my final-year project I built a RAG system with Qwen, LangChain.js and ChromaDB that drafts and checks ISO 27001 documents, and I use AI coding tools such as Claude Code, Antigravity and Codex in my daily development work. I hold CEH v13, a web application penetration testing apprentice certificate and the Fortinet Certified Associate in Cybersecurity, and I bring that security mindset to every system I build.",
 
   skillGroups: [
     {
@@ -265,8 +265,12 @@ const PROFILE = {
       title: "AI and automation",
       items: [
         {
-          abbr: "AI", name: "AI-Assisted Workflow Automation",
-          more: "Using LLMs to solve real business problems with domain-specific AI applications, especially generating documents and preparing audits automatically."
+          abbr: "AI", name: "AI-Assisted Software Development",
+          more: "Building software with AI coding tools such as Claude Code, Antigravity and Codex alongside hand-written code, from prototype to a deployed system, and reviewing AI-generated code before it ships."
+        },
+        {
+          abbr: "RAG", name: "LLM and RAG Integration",
+          more: "Built a retrieval-augmented generation system with Qwen, LangChain.js and a ChromaDB vector store of ISO reference material, so the model drafts and checks ISO 27001 documents against the relevant controls."
         },
         {
           abbr: "PE", name: "Prompt Engineering and Context Design",
@@ -282,16 +286,46 @@ const PROFILE = {
       title: "Engineering",
       items: [
         {
+          abbr: "FS", name: "Full-Stack Web Development",
+          more: "Building web applications with React, Node.js/Express and MySQL, including role-based access for Admin and User, deployed on Ubuntu Server."
+        },
+        {
+          abbr: "CI", name: "CI/CD and Deployment",
+          more: "Built a CI/CD pipeline with GitHub Actions that automates build, test and deployment, rolls back to the last stable version when a deployment fails, and reports pipeline status to Discord."
+        },
+        {
           abbr: "DEV", name: "Developer Tooling and Environments",
-          more: "Fluent with professional tools such as JetBrains IDEs and Git version control, and with managing different development environments. I write Python for security automation and Node.js for backends, and I have built a CI/CD pipeline with automatic rollback."
+          more: "Fluent with JetBrains IDEs, Git and Linux, and with managing different development environments. I write Python for security automation and JavaScript/Node.js for backends."
         }
       ]
     }
   ],
 
-  tools: ["JetBrains IDEs", "Git", "Python", "Node.js", "VMware", "Wireshark", "Ghidra", "CI/CD pipelines"],
+  tools: ["Python", "JavaScript", "Node.js", "Express", "React", "MySQL", "Linux (Ubuntu Server)", "Git", "GitHub Actions", "Qwen", "LangChain.js", "ChromaDB", "Claude Code", "Antigravity", "Codex", "Wireshark", "Ghidra", "VMware", "IntelliJ IDEA"],
 
   experience: [
+    {
+      title: "AI-Based ISO/IEC 27001 Document Drafting and Verification System",
+      org: "Final-year project",
+      when: "2026",
+      award: "",
+      points: [
+        "Built a web application that drafts ISO/IEC 27001:2022 documents (policies, procedures, SoA, risk assessment) from an organization's own data, and checks uploaded documents against Annex A controls to produce a compliance score and findings.",
+        "Integrated an LLM (Qwen) with LangChain.js and a ChromaDB vector store of ISO reference material to retrieve relevant control requirements when drafting and checking.",
+        "Implemented the full stack with React, Node.js/Express and MySQL, with Admin/User roles, deployed on Ubuntu Server.",
+        "Shortlisted in the initial screening round for the TEDFund Ideation Grant."
+      ]
+    },
+    {
+      title: "Cybersecurity and Information Assurance Intern",
+      org: "KKU Science Park",
+      when: "Apr 2026 to May 2026",
+      award: "",
+      points: [
+        "Drafted and structured information security policies, procedures and risk management frameworks aligned with ISO/IEC 27001:2022.",
+        "Conducted gap analysis and security risk assessments to support internal compliance readiness and documentation workflows."
+      ]
+    },
     {
       title: "Cyber Warrior Hackathon 2025",
       org: "Project: Police Risk Analysis",
@@ -319,7 +353,7 @@ const PROFILE = {
       when: "2025",
       award: "",
       points: [
-        "Automated the build, test and deployment process to cut manual configuration errors.",
+        "Automated build, test and deployment with GitHub Actions to cut manual configuration errors.",
         "Added automatic rollback to the last stable version when a deployment fails.",
         "Sent real-time pipeline status to Discord with webhooks so the team can react to failures quickly."
       ]
@@ -394,7 +428,8 @@ const PROFILE = {
   education: {
     degree: "B.Sc. in Cybersecurity (4th year)",
     school: "Khon Kaen University, College of Computing",
-    when: "2023 to present"
+    when: "2023 to present",
+    note: "Completed all coursework and the final-year project. Expected graduation April 2027; available for full-time work now."
   }
 };
 
@@ -686,7 +721,8 @@ function buildEducation() {
   return section("education", T.education,
     h("div", { class: "exp panel" },
       h("div", {}, h("h3", {}, e.degree), h("p", { class: "org" }, e.school)),
-      h("p", { class: "when" }, e.when)
+      h("p", { class: "when" }, e.when),
+      e.note ? h("ul", { class: "points" }, h("li", {}, e.note)) : null
     )
   );
 }
